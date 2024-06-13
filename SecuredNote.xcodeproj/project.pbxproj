@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7692FB822C18B4DC00FD8601 /* SecuredNoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FB812C18B4DC00FD8601 /* SecuredNoteApp.swift */; };
-		7692FB842C18B4DC00FD8601 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FB832C18B4DC00FD8601 /* ContentView.swift */; };
+		7692FB822C18B4DC00FD8601 /* SecuredNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FB812C18B4DC00FD8601 /* SecuredNotesApp.swift */; };
 		7692FB862C18B4DE00FD8601 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7692FB852C18B4DE00FD8601 /* Assets.xcassets */; };
 		7692FB892C18B4DE00FD8601 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7692FB882C18B4DE00FD8601 /* Preview Assets.xcassets */; };
 		7692FB8B2C18B4DE00FD8601 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FB8A2C18B4DE00FD8601 /* Persistence.swift */; };
-		7692FB8E2C18B4DE00FD8601 /* SecuredNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7692FB8C2C18B4DE00FD8601 /* SecuredNote.xcdatamodeld */; };
+		7692FB8E2C18B4DE00FD8601 /* SecuredNoteV1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7692FB8C2C18B4DE00FD8601 /* SecuredNoteV1.xcdatamodeld */; };
 		7692FB982C18B4DE00FD8601 /* SecuredNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FB972C18B4DE00FD8601 /* SecuredNoteTests.swift */; };
 		7692FBA22C18B4DE00FD8601 /* SecuredNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBA12C18B4DE00FD8601 /* SecuredNoteUITests.swift */; };
 		7692FBA42C18B4DE00FD8601 /* SecuredNoteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBA32C18B4DE00FD8601 /* SecuredNoteUITestsLaunchTests.swift */; };
+		7692FBC22C19B95E00FD8601 /* BioMetricSecurityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBBE2C19B95E00FD8601 /* BioMetricSecurityViewModel.swift */; };
+		7692FBC32C19B95E00FD8601 /* NoteDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBBF2C19B95E00FD8601 /* NoteDetailViewModel.swift */; };
+		7692FBC42C19B95E00FD8601 /* NotesMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBC02C19B95E00FD8601 /* NotesMainViewModel.swift */; };
+		7692FBC72C19BC0100FD8601 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBC62C19BC0100FD8601 /* Note.swift */; };
+		7692FBCF2C1A931600FD8601 /* NoteDetailUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBCD2C1A931600FD8601 /* NoteDetailUIView.swift */; };
+		7692FBD02C1A931600FD8601 /* ButtonUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBCE2C1A931600FD8601 /* ButtonUIView.swift */; };
+		7692FBD32C1A933E00FD8601 /* NotesMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBD12C1A933E00FD8601 /* NotesMainView.swift */; };
+		7692FBD42C1A933E00FD8601 /* BioMetricSecurityUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBD22C1A933E00FD8601 /* BioMetricSecurityUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7692FB7E2C18B4DC00FD8601 /* SecuredNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecuredNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7692FB812C18B4DC00FD8601 /* SecuredNoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredNoteApp.swift; sourceTree = "<group>"; };
-		7692FB832C18B4DC00FD8601 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7692FB7E2C18B4DC00FD8601 /* SecuredNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecuredNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7692FB812C18B4DC00FD8601 /* SecuredNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredNotesApp.swift; sourceTree = "<group>"; };
 		7692FB852C18B4DE00FD8601 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7692FB882C18B4DE00FD8601 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7692FB8A2C18B4DE00FD8601 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -48,6 +54,14 @@
 		7692FB9D2C18B4DE00FD8601 /* SecuredNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecuredNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7692FBA12C18B4DE00FD8601 /* SecuredNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredNoteUITests.swift; sourceTree = "<group>"; };
 		7692FBA32C18B4DE00FD8601 /* SecuredNoteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredNoteUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7692FBBE2C19B95E00FD8601 /* BioMetricSecurityViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioMetricSecurityViewModel.swift; sourceTree = "<group>"; };
+		7692FBBF2C19B95E00FD8601 /* NoteDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailViewModel.swift; sourceTree = "<group>"; };
+		7692FBC02C19B95E00FD8601 /* NotesMainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesMainViewModel.swift; sourceTree = "<group>"; };
+		7692FBC62C19BC0100FD8601 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Note.swift; path = Models/Note.swift; sourceTree = "<group>"; };
+		7692FBCD2C1A931600FD8601 /* NoteDetailUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailUIView.swift; sourceTree = "<group>"; };
+		7692FBCE2C1A931600FD8601 /* ButtonUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonUIView.swift; sourceTree = "<group>"; };
+		7692FBD12C1A933E00FD8601 /* NotesMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesMainView.swift; sourceTree = "<group>"; };
+		7692FBD22C1A933E00FD8601 /* BioMetricSecurityUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioMetricSecurityUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +102,7 @@
 		7692FB7F2C18B4DC00FD8601 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7692FB7E2C18B4DC00FD8601 /* SecuredNote.app */,
+				7692FB7E2C18B4DC00FD8601 /* SecuredNotes.app */,
 				7692FB932C18B4DE00FD8601 /* SecuredNoteTests.xctest */,
 				7692FB9D2C18B4DE00FD8601 /* SecuredNoteUITests.xctest */,
 			);
@@ -98,12 +112,14 @@
 		7692FB802C18B4DC00FD8601 /* SecuredNote */ = {
 			isa = PBXGroup;
 			children = (
-				7692FB812C18B4DC00FD8601 /* SecuredNoteApp.swift */,
-				7692FB832C18B4DC00FD8601 /* ContentView.swift */,
+				7692FBCC2C1A92CA00FD8601 /* UIViews */,
+				7692FBC52C19BA3F00FD8601 /* BusinessLogic */,
+				7692FBC12C19B95E00FD8601 /* ViewModels */,
+				7692FB812C18B4DC00FD8601 /* SecuredNotesApp.swift */,
 				7692FB852C18B4DE00FD8601 /* Assets.xcassets */,
-				7692FB8A2C18B4DE00FD8601 /* Persistence.swift */,
-				7692FB8C2C18B4DE00FD8601 /* SecuredNote.xcdatamodeld */,
+				7692FB8C2C18B4DE00FD8601 /* SecuredNoteV1.xcdatamodeld */,
 				7692FB872C18B4DE00FD8601 /* Preview Content */,
+				7692FBC62C19BC0100FD8601 /* Note.swift */,
 			);
 			path = SecuredNote;
 			sourceTree = "<group>";
@@ -133,12 +149,41 @@
 			path = SecuredNoteUITests;
 			sourceTree = "<group>";
 		};
+		7692FBC12C19B95E00FD8601 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7692FBBE2C19B95E00FD8601 /* BioMetricSecurityViewModel.swift */,
+				7692FBBF2C19B95E00FD8601 /* NoteDetailViewModel.swift */,
+				7692FBC02C19B95E00FD8601 /* NotesMainViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7692FBC52C19BA3F00FD8601 /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+				7692FB8A2C18B4DE00FD8601 /* Persistence.swift */,
+			);
+			path = BusinessLogic;
+			sourceTree = "<group>";
+		};
+		7692FBCC2C1A92CA00FD8601 /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				7692FBD22C1A933E00FD8601 /* BioMetricSecurityUIView.swift */,
+				7692FBD12C1A933E00FD8601 /* NotesMainView.swift */,
+				7692FBCE2C1A931600FD8601 /* ButtonUIView.swift */,
+				7692FBCD2C1A931600FD8601 /* NoteDetailUIView.swift */,
+			);
+			path = UIViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7692FB7D2C18B4DC00FD8601 /* SecuredNote */ = {
+		7692FB7D2C18B4DC00FD8601 /* SecuredNotes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7692FBA72C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNote" */;
+			buildConfigurationList = 7692FBA72C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNotes" */;
 			buildPhases = (
 				7692FB7A2C18B4DC00FD8601 /* Sources */,
 				7692FB7B2C18B4DC00FD8601 /* Frameworks */,
@@ -148,9 +193,9 @@
 			);
 			dependencies = (
 			);
-			name = SecuredNote;
+			name = SecuredNotes;
 			productName = SecuredNote;
-			productReference = 7692FB7E2C18B4DC00FD8601 /* SecuredNote.app */;
+			productReference = 7692FB7E2C18B4DC00FD8601 /* SecuredNotes.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7692FB922C18B4DE00FD8601 /* SecuredNoteTests */ = {
@@ -225,7 +270,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7692FB7D2C18B4DC00FD8601 /* SecuredNote */,
+				7692FB7D2C18B4DC00FD8601 /* SecuredNotes */,
 				7692FB922C18B4DE00FD8601 /* SecuredNoteTests */,
 				7692FB9C2C18B4DE00FD8601 /* SecuredNoteUITests */,
 			);
@@ -264,9 +309,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				7692FB8B2C18B4DE00FD8601 /* Persistence.swift in Sources */,
-				7692FB8E2C18B4DE00FD8601 /* SecuredNote.xcdatamodeld in Sources */,
-				7692FB842C18B4DC00FD8601 /* ContentView.swift in Sources */,
-				7692FB822C18B4DC00FD8601 /* SecuredNoteApp.swift in Sources */,
+				7692FBD32C1A933E00FD8601 /* NotesMainView.swift in Sources */,
+				7692FB8E2C18B4DE00FD8601 /* SecuredNoteV1.xcdatamodeld in Sources */,
+				7692FBC42C19B95E00FD8601 /* NotesMainViewModel.swift in Sources */,
+				7692FBCF2C1A931600FD8601 /* NoteDetailUIView.swift in Sources */,
+				7692FBC32C19B95E00FD8601 /* NoteDetailViewModel.swift in Sources */,
+				7692FBC72C19BC0100FD8601 /* Note.swift in Sources */,
+				7692FBD02C1A931600FD8601 /* ButtonUIView.swift in Sources */,
+				7692FB822C18B4DC00FD8601 /* SecuredNotesApp.swift in Sources */,
+				7692FBD42C1A933E00FD8601 /* BioMetricSecurityUIView.swift in Sources */,
+				7692FBC22C19B95E00FD8601 /* BioMetricSecurityViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,12 +344,12 @@
 /* Begin PBXTargetDependency section */
 		7692FB952C18B4DE00FD8601 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7692FB7D2C18B4DC00FD8601 /* SecuredNote */;
+			target = 7692FB7D2C18B4DC00FD8601 /* SecuredNotes */;
 			targetProxy = 7692FB942C18B4DE00FD8601 /* PBXContainerItemProxy */;
 		};
 		7692FB9F2C18B4DE00FD8601 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7692FB7D2C18B4DC00FD8601 /* SecuredNote */;
+			target = 7692FB7D2C18B4DC00FD8601 /* SecuredNotes */;
 			targetProxy = 7692FB9E2C18B4DE00FD8601 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -432,6 +484,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SecuredNote/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "$(PRODUCT_NAME) Authentication with TouchId or FaceID";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -460,6 +513,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SecuredNote/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "$(PRODUCT_NAME) Authentication with TouchId or FaceID";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -562,7 +616,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7692FBA72C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNote" */ = {
+		7692FBA72C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNotes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7692FBA82C18B4DE00FD8601 /* Debug */,
@@ -592,13 +646,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		7692FB8C2C18B4DE00FD8601 /* SecuredNote.xcdatamodeld */ = {
+		7692FB8C2C18B4DE00FD8601 /* SecuredNoteV1.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				7692FB8D2C18B4DE00FD8601 /* SecuredNote.xcdatamodel */,
 			);
 			currentVersion = 7692FB8D2C18B4DE00FD8601 /* SecuredNote.xcdatamodel */;
-			path = SecuredNote.xcdatamodeld;
+			path = SecuredNoteV1.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
