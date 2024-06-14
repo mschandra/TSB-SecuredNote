@@ -20,8 +20,11 @@ class NotesMainViewModel {
 
     @ObservationIgnored
     var persistanceController: PersistenceController
+    @ObservationIgnored
     private let context: NSManagedObjectContext
-    private var noteEntities: [NoteEntity]!
+    @ObservationIgnored
+    private var noteEntities: [NoteEntity] = []
+    @ObservationIgnored
     private var cancellables = Set<AnyCancellable>()
 
     private var fetchRequest: NSFetchRequest<NoteEntity> {
@@ -39,6 +42,7 @@ class NotesMainViewModel {
 
     private func setup() {
         NotificationCenter.default.publisher(for: .NSManagedObjectContextObjectsDidChange, object: context)
+            .subscribe(on: DispatchQueue.global(qos: .background))
             .sink { [weak self] _ in
                 self?.refreshNotes()
             }
@@ -48,6 +52,7 @@ class NotesMainViewModel {
     private func refreshNotes() {
         do {
             noteEntities = try context.fetch(fetchRequest)
+
             self.notes = noteEntities.compactMap { note in
                 if let noteId = note.noteId,
                    let title = note.title,
@@ -63,7 +68,7 @@ class NotesMainViewModel {
         }
     }
 
-    func deleteNote(offsets: IndexSet) {
+    func deleteNote(offsets: IndexSet) async {
         offsets.map { noteEntities[$0] }.forEach(context.delete)
         do {
             try context.save()

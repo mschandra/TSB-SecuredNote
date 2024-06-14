@@ -49,7 +49,9 @@ struct NotesMainView: View {
     private func deleteNote(offsets: IndexSet) {
         Task { @MainActor in
             withAnimation {
-                viewModel.deleteNote(offsets: offsets)
+                Task {
+                    await viewModel.deleteNote(offsets: offsets)
+                }
             }
         }
     }

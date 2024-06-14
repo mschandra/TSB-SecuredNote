@@ -23,19 +23,15 @@ struct NoteDetailUIView: View {
 
         VStack(alignment: .center) {
             Group {
-                TextField("Title ", text: $viewModel.note.title)
-                    .font(Font.custom("Poppins", size: 14))
-                    .foregroundColor(isReadyOnly ? .gray: .black)
-                    .padding(.vertical, 20).padding(.horizontal, 20)
+                TextField("Enter the note title ", text: $viewModel.note.title)
+                    .foregroundColor(isReadyOnly ? Color(UIColor.lightGray): .black)
                     .textFieldStyle(.roundedBorder)
                     .disabled(isReadyOnly)
-                    .disableAutocorrection(true)
+                    .customize()
                 TextEditor(text: $viewModel.note.content)
-                    .font(Font.custom("Poppins", size: 14))
-                    .padding(.vertical, 20).padding(.horizontal, 20)
-                    .foregroundColor(isReadyOnly ? .gray: .black)
+                    .foregroundColor(isReadyOnly ? Color(UIColor.lightGray): .black)
                     .disabled(isReadyOnly)
-                    .disableAutocorrection(true)
+                    .customize()
             }
             Spacer()
         }
@@ -50,7 +46,9 @@ struct NoteDetailUIView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     if self.isNew == true || self.isEditMode == true {
-                        viewModel.saveNote()
+                        Task {
+                            await viewModel.saveNote()
+                        }
                         mode.wrappedValue.dismiss()
                     } else {
                         self.isEditMode = true
@@ -72,4 +70,18 @@ struct NoteDetailUIView: View {
                      isEditMode: true,
                      isNew: true)
 
+}
+struct CustomizeViewModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content.disableAutocorrection(true)
+            .padding(.vertical, 20).padding(.horizontal, 20)
+            .font(Font.custom("Poppins", size: 16))
+            .disableAutocorrection(true)
+    }
+}
+
+extension View {
+    func customize() -> some View {
+        modifier(CustomizeViewModifier())
+    }
 }

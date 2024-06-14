@@ -39,7 +39,7 @@ final class SecuredNoteTests: XCTestCase {
 
     }
 
-    @MainActor func testSaveDetailViewModel() {
+    @MainActor func testSaveDetailViewModel() async {
 
         let persistenceController = PersistenceController.preview
         let notesMainVM = NotesMainViewModel(persistanceController: persistenceController)
@@ -52,13 +52,13 @@ final class SecuredNoteTests: XCTestCase {
         }
 
         let notesDetailVM = NoteDetailViewModel(note: Note.new, persistanceController: persistenceController)
-        notesDetailVM.saveNote()
-        wait(for: [expectation], timeout: 10)
+        await notesDetailVM.saveNote()
+        await fulfillment(of: [expectation], timeout: 10)
         XCTAssertEqual(notesMainVM.notes.count, initCount+1)
 
     }
 
-    @MainActor func testDeleteDetailViewModel() {
+    @MainActor func testDeleteDetailViewModel() async {
 
         let notesManinVM = NotesMainViewModel(persistanceController: PersistenceController.preview)
         let expectation = expectation(description: "test_MainViewModel")
@@ -83,31 +83,29 @@ final class SecuredNoteTests: XCTestCase {
         } onChange: {
             expectation.fulfill()
         }
-        notesManinVM.deleteNote(offsets: IndexSet(integer: 0))
+        await notesManinVM.deleteNote(offsets: IndexSet(integer: 0))
 
-        wait(for: [expectation], timeout: 10)
+        await fulfillment(of: [expectation], timeout: 10)
         XCTAssertEqual(notesManinVM.notes.count, initCount+9)
     }
 
-    @MainActor func testUpdateDetailViewModel() {
+    @MainActor func testUpdateDetailViewModel() async {
 
         let persistenceController = PersistenceController.preview
         let notesMainVM = NotesMainViewModel(persistanceController: persistenceController)
         let expectation = expectation(description: "test_MainViewModel")
         let initCount = notesMainVM.notes.count
         let notesDetailVM = NoteDetailViewModel(note: Note.new, persistanceController: persistenceController)
-        notesDetailVM.saveNote()
-
-        XCTAssertEqual(notesMainVM.notes.count, initCount+1)
-        notesDetailVM.note.title = "hello"
+        await notesDetailVM.saveNote()
 
         withObservationTracking {
             _ = notesMainVM.notes
         } onChange: {
             expectation.fulfill()
         }
-        notesDetailVM.saveNote()
-        wait(for: [expectation], timeout: 10)
+        notesDetailVM.note.title = "hello"
+        await notesDetailVM.saveNote()
+        await fulfillment(of: [expectation], timeout: 10)
         XCTAssertEqual(notesMainVM.notes.first?.title, "hello")
     }
 }

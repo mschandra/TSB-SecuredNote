@@ -21,7 +21,7 @@ class NoteDetailViewModel: NotesVMProtocol {
         self.persistanceController = persistanceController
     }
 
-    func saveNote() {
+    func saveNote() async {
         let request = NoteEntity.fetchRequest() as NSFetchRequest<NoteEntity>
         request.predicate = NSPredicate(format: "noteId == %@", note.noteId as CVarArg)
         let context = persistanceController.container.viewContext
