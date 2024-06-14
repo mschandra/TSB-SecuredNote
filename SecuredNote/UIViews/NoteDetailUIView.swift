@@ -9,31 +9,63 @@ import Foundation
 import SwiftUI
 
 struct NoteDetailUIView: View {
-    var viewModel: NoteDetailViewModel
+    @Environment(\.presentationMode) private var mode
+    @State var viewModel: NoteDetailViewModel
     @State var isEditMode: Bool
     @State var isNew: Bool
     
+    var isReadyOnly : Bool {
+        return !(self.isEditMode || self.isNew)
+    }
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            Group {
-                Text(viewModel.note.title).font(.largeTitle).padding(.bottom)
-                Text(viewModel.note.content).padding(.bottom)
-                Spacer()
+        
+        VStack(alignment: .center) {
+            Group{
+                TextField("Title ", text: $viewModel.note.title)
+                    .font(Font.custom("Poppins", size: 14))
+                    .foregroundColor(isReadyOnly ? .gray: .black)
+                    .padding(.vertical, 20).padding(.horizontal, 20)
+                    .textFieldStyle(.roundedBorder)
+                    .disabled(isReadyOnly)
+                    .disableAutocorrection(true)
+                TextEditor(text: $viewModel.note.content)
+                    .font(Font.custom("Poppins", size: 14))
+                    .padding(.vertical, 20).padding(.horizontal, 20)
+                    .foregroundColor(isReadyOnly ? .gray: .black)
+                    .disabled(isReadyOnly)
+                    .disableAutocorrection(true)
             }
+            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(red: 0.78, green: 0.78, blue: 0.91))
-        .cornerRadius(24)
+        .cornerRadius(4)
         .padding()
         .navigationTitle("Note Details")
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarBackground(Color(red: 0.88, green: 0.88, blue: 1), for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    self.isEditMode = true
+                    if self.isNew == true || self.isEditMode == true {
+                        viewModel.saveNote()
+                        mode.wrappedValue.dismiss()
+                    }else{
+                        self.isEditMode = true
+                    }
                 }) {
                     Text(self.isEditMode || self.isNew ? "Save" : "Edit")
                 }
             }
         }
     }
+}
+
+#Preview {
+    NoteDetailUIView(viewModel: NoteDetailViewModel(note: Note.new,
+                                                    context: PersistenceController.preview.container.viewContext),
+                     isEditMode: true,
+                     isNew: true)
+    
 }

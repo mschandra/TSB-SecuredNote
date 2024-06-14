@@ -13,41 +13,38 @@ struct NotesMainView: View {
     @State private var isUnlocked = false
     
     var viewModel: NotesMainViewModel
-
+    
     var body: some View {
         
         NavigationView {
             ZStack() {
                 Group {
                     List {
-                        ForEach(viewModel.notes, id: \.noteId) { item in
+                        ForEach(viewModel.notes, id: \.noteId) { note in
                             NavigationLink {
-                                let vm = NoteDetailViewModel(note: item,
-                                                                   context: self.viewModel.context)
-                                NoteDetailUIView(viewModel:
-                                                    vm, isEditMode: false,
-                                isNew: false)
+                                NotesCoordinator().detailView(for: note, context: self.viewModel.context)
                             } label: {
-                                Text(item.title)
+                                Text(note.title)
                             }
                         }
                         .onDelete(perform: deleteNote)
                     }
                 }
                 .background(Color(red: 0.78, green: 0.78, blue: 0.91))
-                .cornerRadius(24)
+                .cornerRadius(4)
             }
-            .toolbarBackground(.teal)
+            .navigationTitle("Notes")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(Color(red: 0.88, green: 0.88, blue: 1), for: .navigationBar)
             .toolbar {
                 ToolbarItem {
                     Button(action: {}) {
-                        NavigationLink(destination:
-                                        NoteDetailUIView(viewModel: NoteDetailViewModel(note: Note.newNote(),
-                                                context: self.viewModel.context),
-                                            isEditMode: true,
-                                     isNew: true)) { Image(systemName: "plus") }
+                        NavigationLink(destination: NotesCoordinator().newNotesView(with: self.viewModel.context)) { Image(systemName: "plus") }
                     }
                 }
+            }.onAppear {
+                
             }
         }
     }
@@ -56,7 +53,7 @@ struct NotesMainView: View {
             viewModel.deleteNote(offsets: offsets)
         }
     }
-  
+    
 }
 
 private let itemFormatter: DateFormatter = {

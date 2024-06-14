@@ -10,7 +10,6 @@ import CoreData
 
 @Observable
 class NoteDetailViewModel {
-    @ObservationIgnored
     var note: Note
     @ObservationIgnored
     let context: NSManagedObjectContext
@@ -20,20 +19,21 @@ class NoteDetailViewModel {
         self.context = context
     }
     
-    private func saveNote() {
+    func saveNote() {
         let request = NoteManagedData.fetchRequest() as NSFetchRequest<NoteManagedData>
         request.predicate = NSPredicate(format: "noteId == %@", note.noteId as CVarArg)
-        if let note = try? context.fetch(request).first{
-            note.timestamp = Date()
-            note.title = note.title
-            note.title = note.title
+        if let existingNote = try? context.fetch(request).first{
+            existingNote.timestamp = Date()
+            existingNote.title = note.title
+            existingNote.content = note.content
         }else {
             let newNote = NoteManagedData(context: context)
             newNote.timestamp = Date()
+            newNote.noteId = note.noteId
             newNote.title = note.title
-            newNote.title = note.title
+            newNote.content = note.content
         }
-    
+        
         do {
             try context.save()
         } catch {
@@ -41,5 +41,5 @@ class NoteDetailViewModel {
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
-
+    
 }

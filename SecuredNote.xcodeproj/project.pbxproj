@@ -20,9 +20,10 @@
 		7692FBC42C19B95E00FD8601 /* NotesMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBC02C19B95E00FD8601 /* NotesMainViewModel.swift */; };
 		7692FBC72C19BC0100FD8601 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBC62C19BC0100FD8601 /* Note.swift */; };
 		7692FBCF2C1A931600FD8601 /* NoteDetailUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBCD2C1A931600FD8601 /* NoteDetailUIView.swift */; };
-		7692FBD02C1A931600FD8601 /* ButtonUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBCE2C1A931600FD8601 /* ButtonUIView.swift */; };
 		7692FBD32C1A933E00FD8601 /* NotesMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBD12C1A933E00FD8601 /* NotesMainView.swift */; };
 		7692FBD42C1A933E00FD8601 /* BioMetricSecurityUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBD22C1A933E00FD8601 /* BioMetricSecurityUIView.swift */; };
+		7692FBD72C1C44F500FD8601 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBD62C1C44F500FD8601 /* AppCoordinator.swift */; };
+		7692FBD92C1C4C6600FD8601 /* NotesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692FBD82C1C4C6600FD8601 /* NotesCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,11 +58,12 @@
 		7692FBBE2C19B95E00FD8601 /* BioMetricSecurityViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioMetricSecurityViewModel.swift; sourceTree = "<group>"; };
 		7692FBBF2C19B95E00FD8601 /* NoteDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailViewModel.swift; sourceTree = "<group>"; };
 		7692FBC02C19B95E00FD8601 /* NotesMainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesMainViewModel.swift; sourceTree = "<group>"; };
-		7692FBC62C19BC0100FD8601 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Note.swift; path = Models/Note.swift; sourceTree = "<group>"; };
+		7692FBC62C19BC0100FD8601 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		7692FBCD2C1A931600FD8601 /* NoteDetailUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailUIView.swift; sourceTree = "<group>"; };
-		7692FBCE2C1A931600FD8601 /* ButtonUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonUIView.swift; sourceTree = "<group>"; };
 		7692FBD12C1A933E00FD8601 /* NotesMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesMainView.swift; sourceTree = "<group>"; };
 		7692FBD22C1A933E00FD8601 /* BioMetricSecurityUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioMetricSecurityUIView.swift; sourceTree = "<group>"; };
+		7692FBD62C1C44F500FD8601 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		7692FBD82C1C4C6600FD8601 /* NotesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		7692FB802C18B4DC00FD8601 /* SecuredNote */ = {
 			isa = PBXGroup;
 			children = (
+				7692FBD52C1C44D700FD8601 /* Coordinator */,
 				7692FBCC2C1A92CA00FD8601 /* UIViews */,
 				7692FBC52C19BA3F00FD8601 /* BusinessLogic */,
 				7692FBC12C19B95E00FD8601 /* ViewModels */,
@@ -119,7 +122,6 @@
 				7692FB852C18B4DE00FD8601 /* Assets.xcassets */,
 				7692FB8C2C18B4DE00FD8601 /* SecuredNoteV1.xcdatamodeld */,
 				7692FB872C18B4DE00FD8601 /* Preview Content */,
-				7692FBC62C19BC0100FD8601 /* Note.swift */,
 			);
 			path = SecuredNote;
 			sourceTree = "<group>";
@@ -152,6 +154,7 @@
 		7692FBC12C19B95E00FD8601 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				7692FBC62C19BC0100FD8601 /* Note.swift */,
 				7692FBBE2C19B95E00FD8601 /* BioMetricSecurityViewModel.swift */,
 				7692FBBF2C19B95E00FD8601 /* NoteDetailViewModel.swift */,
 				7692FBC02C19B95E00FD8601 /* NotesMainViewModel.swift */,
@@ -172,10 +175,18 @@
 			children = (
 				7692FBD22C1A933E00FD8601 /* BioMetricSecurityUIView.swift */,
 				7692FBD12C1A933E00FD8601 /* NotesMainView.swift */,
-				7692FBCE2C1A931600FD8601 /* ButtonUIView.swift */,
 				7692FBCD2C1A931600FD8601 /* NoteDetailUIView.swift */,
 			);
 			path = UIViews;
+			sourceTree = "<group>";
+		};
+		7692FBD52C1C44D700FD8601 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				7692FBD62C1C44F500FD8601 /* AppCoordinator.swift */,
+				7692FBD82C1C4C6600FD8601 /* NotesCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,14 +319,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7692FBD72C1C44F500FD8601 /* AppCoordinator.swift in Sources */,
 				7692FB8B2C18B4DE00FD8601 /* Persistence.swift in Sources */,
 				7692FBD32C1A933E00FD8601 /* NotesMainView.swift in Sources */,
 				7692FB8E2C18B4DE00FD8601 /* SecuredNoteV1.xcdatamodeld in Sources */,
 				7692FBC42C19B95E00FD8601 /* NotesMainViewModel.swift in Sources */,
 				7692FBCF2C1A931600FD8601 /* NoteDetailUIView.swift in Sources */,
 				7692FBC32C19B95E00FD8601 /* NoteDetailViewModel.swift in Sources */,
+				7692FBD92C1C4C6600FD8601 /* NotesCoordinator.swift in Sources */,
 				7692FBC72C19BC0100FD8601 /* Note.swift in Sources */,
-				7692FBD02C1A931600FD8601 /* ButtonUIView.swift in Sources */,
 				7692FB822C18B4DC00FD8601 /* SecuredNotesApp.swift in Sources */,
 				7692FBD42C1A933E00FD8601 /* BioMetricSecurityUIView.swift in Sources */,
 				7692FBC22C19B95E00FD8601 /* BioMetricSecurityViewModel.swift in Sources */,

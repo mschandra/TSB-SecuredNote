@@ -10,10 +10,10 @@ import Foundation
 struct Note {
     
     let noteId: UUID
-    let title: String
-    let content: String
+    var title: String
+    var content: String
     
-    static func newNote() -> Note {
+    static var new: Note {
         return Note(noteId: UUID(), title: "", content: "")
     }
 }
