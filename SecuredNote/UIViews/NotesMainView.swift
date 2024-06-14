@@ -9,15 +9,11 @@ import SwiftUI
 import LocalAuthentication
 
 struct NotesMainView: View {
-    
     @State private var isUnlocked = false
-    
     @State var viewModel: NotesMainViewModel
-    
     var body: some View {
-        
         NavigationView {
-            ZStack() {
+            ZStack {
                 Group {
                     List {
                         ForEach(viewModel.notes, id: \.noteId) { note in
@@ -57,7 +53,7 @@ struct NotesMainView: View {
             }
         }
     }
-    
+
 }
 #Preview {
     NotesMainView(viewModel: NotesMainViewModel(persistanceController: PersistenceController.preview))

@@ -10,23 +10,19 @@ import SwiftUI
 import CoreData
 
 class NotesCoordinator {
-    
-    @MainActor func mainView(context: NSManagedObjectContext) -> some View{
+    @MainActor func mainView(context: NSManagedObjectContext) -> some View {
         NotesMainView(viewModel: NotesMainViewModel())
     }
-    
-    @MainActor func detailView(for note:Note) -> some View{
-        let vm = NoteDetailViewModel(note: note)
+    @MainActor func detailView(for note: Note) -> some View {
+        let viewModel = NoteDetailViewModel(note: note)
         return NoteDetailUIView(viewModel:
-                            vm, isEditMode: false,
+                                    viewModel, isEditMode: false,
                          isNew: false)
     }
-    
-    @MainActor func newNotesView() -> some View{
-        let vm = NoteDetailViewModel(note: Note.new)
+    @MainActor func newNotesView( ) -> some View {
+        let viewModel = NoteDetailViewModel(note: Note.new)
         return NoteDetailUIView(viewModel:
-                            vm, isEditMode: true,
+                                    viewModel, isEditMode: true,
                          isNew: true)
     }
-    
 }

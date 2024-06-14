@@ -9,9 +9,7 @@ import Foundation
 import SwiftUI
 
 class AppCoordinator {
-    
-    func root() -> some View  {
+    func root() -> some View {
         return BioMetricSecurityUIView(viewModel: BioMetricSecurityViewModel())
     }
-    
 }

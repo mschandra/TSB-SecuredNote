@@ -8,30 +8,28 @@
 import Foundation
 import CoreData
 
-
-
 @Observable
-class NoteDetailViewModel : NotesVMProtocol {
+class NoteDetailViewModel: NotesVMProtocol {
     var errorWhileSaving = false
     var note: Note
     @ObservationIgnored
     var persistanceController: PersistenceController
-    
-    init(note: Note, 
+
+    init(note: Note,
          persistanceController: PersistenceController = PersistenceController.shared ) {
         self.note = note
         self.persistanceController = persistanceController
     }
-    
+
     func saveNote() {
         let request = NoteEntity.fetchRequest() as NSFetchRequest<NoteEntity>
         request.predicate = NSPredicate(format: "noteId == %@", note.noteId as CVarArg)
         let context = persistanceController.container.viewContext
-        if let existingNote = try? context.fetch(request).first{
+        if let existingNote = try? context.fetch(request).first {
             existingNote.timestamp = Date()
             existingNote.title = note.title
             existingNote.content = note.content
-        }else {
+        } else {
             let newNote = NoteEntity(context: context)
             newNote.timestamp = Date()
             newNote.noteId = note.noteId
@@ -45,5 +43,5 @@ class NoteDetailViewModel : NotesVMProtocol {
             print("Core-data error \(nserror), \(nserror.userInfo)")
         }
     }
-    
+
 }

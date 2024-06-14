@@ -13,18 +13,16 @@ struct NoteDetailUIView: View {
     @State var viewModel: NoteDetailViewModel
     @State var isEditMode: Bool
     @State var isNew: Bool
-    
-    var isReadyOnly : Bool {
+    var isReadyOnly: Bool {
         return !(self.isEditMode || self.isNew)
     }
     var hasTitle: Bool {
         return !viewModel.note.title.isEmpty
     }
-    
     var body: some View {
-        
+
         VStack(alignment: .center) {
-            Group{
+            Group {
                 TextField("Title ", text: $viewModel.note.title)
                     .font(Font.custom("Poppins", size: 14))
                     .foregroundColor(isReadyOnly ? .gray: .black)
@@ -54,7 +52,7 @@ struct NoteDetailUIView: View {
                     if self.isNew == true || self.isEditMode == true {
                         viewModel.saveNote()
                         mode.wrappedValue.dismiss()
-                    }else{
+                    } else {
                         self.isEditMode = true
                     }
                 }) {
@@ -73,5 +71,5 @@ struct NoteDetailUIView: View {
                                                     persistanceController: PersistenceController.preview),
                      isEditMode: true,
                      isNew: true)
-    
+
 }

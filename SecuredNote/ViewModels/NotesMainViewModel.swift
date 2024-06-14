@@ -17,27 +17,26 @@ protocol NotesVMProtocol {
 class NotesMainViewModel {
     var errorWhileDelete = false
     var notes =  [Note]()
-   
+
     @ObservationIgnored
     var persistanceController: PersistenceController
     private let context: NSManagedObjectContext
     private var noteEntities: [NoteEntity]!
     private var cancellables = Set<AnyCancellable>()
-    
-    
+
     private var fetchRequest: NSFetchRequest<NoteEntity> {
         let request = NoteEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \NoteEntity.timestamp, ascending: false)]
         return request
     }
-    
+
     init(persistanceController: PersistenceController = PersistenceController.shared ) {
         self.persistanceController = persistanceController
         self.context = persistanceController.container.viewContext
         self.setup()
         self.refreshNotes()
     }
-    
+
     private func setup() {
         NotificationCenter.default.publisher(for: .NSManagedObjectContextObjectsDidChange, object: context)
             .sink { [weak self] _ in
@@ -45,7 +44,7 @@ class NotesMainViewModel {
             }
             .store(in: &cancellables)
     }
-    
+
     private func refreshNotes() {
         do {
             noteEntities = try context.fetch(fetchRequest)
@@ -54,7 +53,7 @@ class NotesMainViewModel {
                    let title = note.title,
                    let content = note.content {
                     return Note(noteId: noteId, title: title, content: content)
-                }else {
+                } else {
                     return nil
                 }
             }
@@ -63,7 +62,7 @@ class NotesMainViewModel {
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
-    
+
     func deleteNote(offsets: IndexSet) {
         offsets.map { noteEntities[$0] }.forEach(context.delete)
         do {
@@ -74,5 +73,5 @@ class NotesMainViewModel {
             print("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
-    
+
 }

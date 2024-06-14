@@ -8,11 +8,11 @@
 import Foundation
 
 struct Note {
-    
+
     let noteId: UUID
     var title: String
     var content: String
-    
+
     static var new: Note {
         return Note(noteId: UUID(), title: "", content: "")
     }

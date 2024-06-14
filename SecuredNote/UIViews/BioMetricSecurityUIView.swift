@@ -11,11 +11,10 @@ struct BioMetricSecurityUIView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var isActive: Bool = false
     var viewModel: SecurityViewModel
-    
     init(viewModel: SecurityViewModel) {
         self.viewModel = viewModel
     }
-    
+
     var body: some View {
         ZStack {
             if self.viewModel.isUnlocked {
@@ -29,7 +28,7 @@ struct BioMetricSecurityUIView: View {
                     .frame(width: 300, height: 300)
             }
         }
-        .onChange(of: isActive, { oldValue, newValue in
+        .onChange(of: isActive, { _, _ in
             self.viewModel.unlock()
         })
         .onAppear {
