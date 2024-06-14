@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import SecuredNote
+@testable import SecuredNotes
 
 final class SecuredNoteTests: XCTestCase {
 
@@ -17,20 +17,55 @@ final class SecuredNoteTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    @MainActor func testMainViewModel() {
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+        let notesManinVM = NotesMainViewModel(persistanceController: PersistenceController.preview)
+        let expectation = expectation(description: "test_MainViewModel")
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        withObservationTracking {
+            _ = notesManinVM.notes
+        } onChange: {
+            expectation.fulfill()
         }
-    }
+        let viewContext = PersistenceController.preview.container.viewContext
+        for _ in 0..<10 {
+            let newItem = NoteEntity(context: viewContext)
+            newItem.timestamp = Date()
+            newItem.noteId = UUID()
+            newItem.title = "Testing"
+            newItem.content = "test_MainViewModel"
+        }
+        do {
+           try PersistenceController.preview.saveContext()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        wait(for: [expectation], timeout: 10)
+        XCTAssertEqual(notesManinVM.notes.count, 20)
 
+    }
+    
+    
+    @MainActor func testDetailViewModel() {
+
+        let persistenceController = PersistenceController.preview
+        let notesMainVM = NotesMainViewModel(persistanceController: persistenceController)
+        let expectation = expectation(description: "test_MainViewModel")
+
+        withObservationTracking {
+            _ = notesMainVM.notes
+        } onChange: {
+            expectation.fulfill()
+        }
+        
+        let notesDetailVM = NoteDetailViewModel(note: Note.new, persistanceController: persistenceController)
+        notesDetailVM.saveNote()
+        wait(for: [expectation], timeout: 10)
+        XCTAssertEqual(notesMainVM.notes.count, 11)
+
+    }
 }

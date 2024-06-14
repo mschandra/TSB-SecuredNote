@@ -17,6 +17,9 @@ struct NoteDetailUIView: View {
     var isReadyOnly : Bool {
         return !(self.isEditMode || self.isNew)
     }
+    var hasTitle: Bool {
+        return !viewModel.note.title.isEmpty
+    }
     
     var body: some View {
         
@@ -56,15 +59,18 @@ struct NoteDetailUIView: View {
                     }
                 }) {
                     Text(self.isEditMode || self.isNew ? "Save" : "Edit")
-                }
+                }.disabled(!hasTitle)
             }
+        }
+        .alert("Error while saving the note, Please try again", isPresented: $viewModel.errorWhileSaving) {
+            Button("OK") { }
         }
     }
 }
 
 #Preview {
     NoteDetailUIView(viewModel: NoteDetailViewModel(note: Note.new,
-                                                    context: PersistenceController.preview.container.viewContext),
+                                                    persistanceController: PersistenceController.preview),
                      isEditMode: true,
                      isNew: true)
     

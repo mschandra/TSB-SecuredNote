@@ -9,24 +9,31 @@ import Foundation
 import CoreData
 import Combine
 
+protocol NotesVMProtocol {
+    var persistanceController: PersistenceController {get set}
+}
+@MainActor
 @Observable
 class NotesMainViewModel {
-    
-    let context: NSManagedObjectContext
-    
-    private var notesManagedData: [NoteManagedData]!
+    var errorWhileDelete = false
+    var notes =  [Note]()
+   
+    @ObservationIgnored
+    var persistanceController: PersistenceController
+    private let context: NSManagedObjectContext
+    private var noteEntities: [NoteEntity]!
     private var cancellables = Set<AnyCancellable>()
     
-    var notes =  [Note]()
     
-    private var fetchRequest: NSFetchRequest<NoteManagedData> {
-        let request = NoteManagedData.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \NoteManagedData.timestamp, ascending: false)]
+    private var fetchRequest: NSFetchRequest<NoteEntity> {
+        let request = NoteEntity.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \NoteEntity.timestamp, ascending: false)]
         return request
     }
     
-    init(context: NSManagedObjectContext) {
-        self.context = context
+    init(persistanceController: PersistenceController = PersistenceController.shared ) {
+        self.persistanceController = persistanceController
+        self.context = persistanceController.container.viewContext
         self.setup()
         self.refreshNotes()
     }
@@ -41,35 +48,30 @@ class NotesMainViewModel {
     
     private func refreshNotes() {
         do {
-            notesManagedData = try context.fetch(fetchRequest)
-            createNoteObjects()
-        } catch {
-            
-        }
-    }
-    
-    private func createNoteObjects() {
-        var noteList = [Note]()
-        print(notesManagedData)
-        notesManagedData.forEach { managedData in
-            if let noteId = managedData.noteId,
-               let title = managedData.title,
-               let content = managedData.content {
-                
-                noteList.append(Note(noteId: noteId, title: title, content: content))
-                print(noteList)
+            noteEntities = try context.fetch(fetchRequest)
+            self.notes = noteEntities.compactMap { note in
+                if let noteId = note.noteId,
+                   let title = note.title,
+                   let content = note.content {
+                    return Note(noteId: noteId, title: title, content: content)
+                }else {
+                    return nil
+                }
             }
-        }
-        self.notes = noteList
-    }
-    
-    func deleteNote(offsets: IndexSet) {
-        offsets.map { notesManagedData[$0] }.forEach(context.delete)
-        do {
-            try context.save()
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+    
+    func deleteNote(offsets: IndexSet) {
+        offsets.map { noteEntities[$0] }.forEach(context.delete)
+        do {
+            try context.save()
+        } catch {
+            errorWhileDelete = true
+            let nsError = error as NSError
+            print("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     

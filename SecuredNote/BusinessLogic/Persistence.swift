@@ -14,8 +14,11 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = NoteManagedData(context: viewContext)
+            let newItem = NoteEntity(context: viewContext)
             newItem.timestamp = Date()
+            newItem.noteId = UUID()
+            newItem.title = "Testing"
+            newItem.content = "In-App"
         }
         do {
             try viewContext.save()
@@ -33,6 +36,9 @@ struct PersistenceController {
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "SecuredNoteV1")
         if inMemory {
+//            let description = NSPersistentStoreDescription()
+//            description.type = NSInMemoryStoreType
+//            container.persistentStoreDescriptions = [description]
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -52,5 +58,12 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+    
+    func saveContext() throws {
+        let context = container.viewContext
+        if context.hasChanges {
+            try context.save()
+        }
     }
 }

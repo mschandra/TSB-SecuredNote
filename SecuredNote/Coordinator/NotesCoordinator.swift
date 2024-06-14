@@ -11,22 +11,19 @@ import CoreData
 
 class NotesCoordinator {
     
-    func mainView(context: NSManagedObjectContext) -> some View{
-        NotesMainView(viewModel: NotesMainViewModel(context: context))
+    @MainActor func mainView(context: NSManagedObjectContext) -> some View{
+        NotesMainView(viewModel: NotesMainViewModel())
     }
     
-    func detailView(for note:Note,
-                    context: NSManagedObjectContext) -> some View{
-        let vm = NoteDetailViewModel(note: note,
-                                     context: context)
+    @MainActor func detailView(for note:Note) -> some View{
+        let vm = NoteDetailViewModel(note: note)
         return NoteDetailUIView(viewModel:
                             vm, isEditMode: false,
                          isNew: false)
     }
     
-    func newNotesView(with context: NSManagedObjectContext) -> some View{
-        let vm = NoteDetailViewModel(note: Note.new,
-                                     context: context)
+    @MainActor func newNotesView() -> some View{
+        let vm = NoteDetailViewModel(note: Note.new)
         return NoteDetailUIView(viewModel:
                             vm, isEditMode: true,
                          isNew: true)

@@ -12,7 +12,7 @@ struct NotesMainView: View {
     
     @State private var isUnlocked = false
     
-    var viewModel: NotesMainViewModel
+    @State var viewModel: NotesMainViewModel
     
     var body: some View {
         
@@ -22,7 +22,7 @@ struct NotesMainView: View {
                     List {
                         ForEach(viewModel.notes, id: \.noteId) { note in
                             NavigationLink {
-                                NotesCoordinator().detailView(for: note, context: self.viewModel.context)
+                                NotesCoordinator().detailView(for: note)
                             } label: {
                                 Text(note.title)
                             }
@@ -40,29 +40,25 @@ struct NotesMainView: View {
             .toolbar {
                 ToolbarItem {
                     Button(action: {}) {
-                        NavigationLink(destination: NotesCoordinator().newNotesView(with: self.viewModel.context)) { Image(systemName: "plus") }
+                        NavigationLink(destination: NotesCoordinator().newNotesView()) { Image(systemName: "plus") }
                     }
                 }
-            }.onAppear {
-                
             }
+            .alert("Error while deleting the note, Please try again", isPresented: $viewModel.errorWhileDelete) {
+                Button("OK") { }
+            }
+
         }
     }
     private func deleteNote(offsets: IndexSet) {
-        withAnimation {
-            viewModel.deleteNote(offsets: offsets)
+        Task { @MainActor in
+            withAnimation {
+                viewModel.deleteNote(offsets: offsets)
+            }
         }
     }
     
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 #Preview {
-    NotesMainView(viewModel: NotesMainViewModel(context: PersistenceController.preview.container.viewContext)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    NotesMainView(viewModel: NotesMainViewModel(persistanceController: PersistenceController.preview))
 }

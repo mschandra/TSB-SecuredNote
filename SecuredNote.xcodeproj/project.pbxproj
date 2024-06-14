@@ -50,9 +50,9 @@
 		7692FB882C18B4DE00FD8601 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7692FB8A2C18B4DE00FD8601 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		7692FB8D2C18B4DE00FD8601 /* SecuredNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SecuredNote.xcdatamodel; sourceTree = "<group>"; };
-		7692FB932C18B4DE00FD8601 /* SecuredNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecuredNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7692FB932C18B4DE00FD8601 /* SecuredNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecuredNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7692FB972C18B4DE00FD8601 /* SecuredNoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredNoteTests.swift; sourceTree = "<group>"; };
-		7692FB9D2C18B4DE00FD8601 /* SecuredNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecuredNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7692FB9D2C18B4DE00FD8601 /* SecuredNotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecuredNotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7692FBA12C18B4DE00FD8601 /* SecuredNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredNoteUITests.swift; sourceTree = "<group>"; };
 		7692FBA32C18B4DE00FD8601 /* SecuredNoteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredNoteUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7692FBBE2C19B95E00FD8601 /* BioMetricSecurityViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioMetricSecurityViewModel.swift; sourceTree = "<group>"; };
@@ -105,8 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				7692FB7E2C18B4DC00FD8601 /* SecuredNotes.app */,
-				7692FB932C18B4DE00FD8601 /* SecuredNoteTests.xctest */,
-				7692FB9D2C18B4DE00FD8601 /* SecuredNoteUITests.xctest */,
+				7692FB932C18B4DE00FD8601 /* SecuredNotesTests.xctest */,
+				7692FB9D2C18B4DE00FD8601 /* SecuredNotesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,9 +209,9 @@
 			productReference = 7692FB7E2C18B4DC00FD8601 /* SecuredNotes.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7692FB922C18B4DE00FD8601 /* SecuredNoteTests */ = {
+		7692FB922C18B4DE00FD8601 /* SecuredNotesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7692FBAA2C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNoteTests" */;
+			buildConfigurationList = 7692FBAA2C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNotesTests" */;
 			buildPhases = (
 				7692FB8F2C18B4DE00FD8601 /* Sources */,
 				7692FB902C18B4DE00FD8601 /* Frameworks */,
@@ -222,14 +222,14 @@
 			dependencies = (
 				7692FB952C18B4DE00FD8601 /* PBXTargetDependency */,
 			);
-			name = SecuredNoteTests;
+			name = SecuredNotesTests;
 			productName = SecuredNoteTests;
-			productReference = 7692FB932C18B4DE00FD8601 /* SecuredNoteTests.xctest */;
+			productReference = 7692FB932C18B4DE00FD8601 /* SecuredNotesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7692FB9C2C18B4DE00FD8601 /* SecuredNoteUITests */ = {
+		7692FB9C2C18B4DE00FD8601 /* SecuredNotesUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7692FBAD2C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNoteUITests" */;
+			buildConfigurationList = 7692FBAD2C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNotesUITests" */;
 			buildPhases = (
 				7692FB992C18B4DE00FD8601 /* Sources */,
 				7692FB9A2C18B4DE00FD8601 /* Frameworks */,
@@ -240,9 +240,9 @@
 			dependencies = (
 				7692FB9F2C18B4DE00FD8601 /* PBXTargetDependency */,
 			);
-			name = SecuredNoteUITests;
+			name = SecuredNotesUITests;
 			productName = SecuredNoteUITests;
-			productReference = 7692FB9D2C18B4DE00FD8601 /* SecuredNoteUITests.xctest */;
+			productReference = 7692FB9D2C18B4DE00FD8601 /* SecuredNotesUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -282,8 +282,8 @@
 			projectRoot = "";
 			targets = (
 				7692FB7D2C18B4DC00FD8601 /* SecuredNotes */,
-				7692FB922C18B4DE00FD8601 /* SecuredNoteTests */,
-				7692FB9C2C18B4DE00FD8601 /* SecuredNoteUITests */,
+				7692FB922C18B4DE00FD8601 /* SecuredNotesTests */,
+				7692FB9C2C18B4DE00FD8601 /* SecuredNotesUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -559,7 +559,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SecuredNote.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SecuredNote";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SecuredNotes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SecuredNotes";
 			};
 			name = Debug;
 		};
@@ -578,7 +578,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SecuredNote.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SecuredNote";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SecuredNotes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SecuredNotes";
 			};
 			name = Release;
 		};
@@ -637,7 +637,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7692FBAA2C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNoteTests" */ = {
+		7692FBAA2C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNotesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7692FBAB2C18B4DE00FD8601 /* Debug */,
@@ -646,7 +646,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7692FBAD2C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNoteUITests" */ = {
+		7692FBAD2C18B4DE00FD8601 /* Build configuration list for PBXNativeTarget "SecuredNotesUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7692FBAE2C18B4DE00FD8601 /* Debug */,
