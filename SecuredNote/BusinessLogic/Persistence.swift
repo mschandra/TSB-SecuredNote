@@ -12,20 +12,20 @@ struct PersistenceController {
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = NoteEntity(context: viewContext)
-            newItem.timestamp = Date()
-            newItem.noteId = UUID()
-            newItem.title = "Testing"
-            newItem.content = "In-App"
-        }
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+//        let viewContext = result.container.viewContext
+//        for _ in 0..<10 {
+//            let newItem = NoteEntity(context: viewContext)
+//            newItem.timestamp = Date()
+//            newItem.noteId = UUID()
+//            newItem.title = "Testing"
+//            newItem.content = "In-App"
+//        }
+//        do {
+//            try viewContext.save()
+//        } catch {
+//            let nsError = error as NSError
+//            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//        }
         return result
     }()
 
