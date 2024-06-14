@@ -10,13 +10,13 @@
 
 ## Introduction
 Welcome to the iOS Coding Challenge! This project will cover the below requirements
-Implement biometric authentication (TouchID/FaceID) to secure access to the app.
-Create, read, update & delete (CRUD) notes. Each note contains a title and content.
-Use CoreData to persist notes locally.
-Utilize Combine for handling asynchronous events and data binding.
-Build the user interface using SwiftUI.
-Use MVVM-C (Model-View-ViewModel-Coordinator) architecture.
-Add unit test cases. 
+1. Implement biometric authentication (TouchID/FaceID) to secure access to the app.
+2. Create, read, update & delete (CRUD) notes. Each note contains a title and content.
+3. Use CoreData to persist notes locally.
+4. Utilize Combine for handling asynchronous events and data binding.
+5. Build the user interface using SwiftUI.
+6. Use MVVM-C (Model-View-ViewModel-Coordinator) architecture.
+7. Add unit test cases. 
 
 ## Requirements
 - **Xcode 15.3 or later**
