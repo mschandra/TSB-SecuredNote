@@ -17,14 +17,10 @@ protocol NotesVMProtocol {
 class NotesMainViewModel {
     var errorWhileDelete = false
     var notes =  [Note]()
-
-    @ObservationIgnored
-    var persistanceController: PersistenceController
-    @ObservationIgnored
-    private let context: NSManagedObjectContext
-    @ObservationIgnored
     private var noteEntities: [NoteEntity] = []
     @ObservationIgnored
+    var persistanceController: PersistenceController
+    private let context: NSManagedObjectContext
     private var cancellables = Set<AnyCancellable>()
 
     private var fetchRequest: NSFetchRequest<NoteEntity> {
@@ -42,7 +38,6 @@ class NotesMainViewModel {
 
     private func setup() {
         NotificationCenter.default.publisher(for: .NSManagedObjectContextObjectsDidChange, object: context)
-            .subscribe(on: DispatchQueue.global(qos: .background))
             .sink { [weak self] _ in
                 self?.refreshNotes()
             }

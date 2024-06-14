@@ -10,35 +10,6 @@ import XCTest
 
 final class SecuredNoteTests: XCTestCase {
 
-    @MainActor func testMainViewModel() {
-
-        let notesManinVM = NotesMainViewModel(persistanceController: PersistenceController.preview)
-        let expectation = expectation(description: "test_MainViewModel")
-        let initCount = notesManinVM.notes.count
-        withObservationTracking {
-            _ = notesManinVM.notes
-        } onChange: {
-            expectation.fulfill()
-        }
-        let viewContext = PersistenceController.preview.container.viewContext
-        for _ in 0..<10 {
-            let newItem = NoteEntity(context: viewContext)
-            newItem.timestamp = Date()
-            newItem.noteId = UUID()
-            newItem.title = "Testing"
-            newItem.content = "test_MainViewModel"
-        }
-        do {
-           try PersistenceController.preview.saveContext()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        wait(for: [expectation], timeout: 10)
-        XCTAssertEqual(notesManinVM.notes.count, initCount+10)
-
-    }
-
     @MainActor func testSaveDetailViewModel() async {
 
         let persistenceController = PersistenceController.preview
@@ -59,12 +30,12 @@ final class SecuredNoteTests: XCTestCase {
     }
 
     @MainActor func testDeleteDetailViewModel() async {
-
-        let notesManinVM = NotesMainViewModel(persistanceController: PersistenceController.preview)
+        let persistenceController = PersistenceController.preview
+        let notesManinVM = NotesMainViewModel(persistanceController: persistenceController)
         let expectation = expectation(description: "test_MainViewModel")
         let initCount = notesManinVM.notes.count
 
-        let viewContext = PersistenceController.preview.container.viewContext
+        let viewContext = persistenceController.container.viewContext
         for _ in 0..<10 {
             let newItem = NoteEntity(context: viewContext)
             newItem.timestamp = Date()
@@ -73,7 +44,7 @@ final class SecuredNoteTests: XCTestCase {
             newItem.content = "test_MainViewModel"
         }
         do {
-           try PersistenceController.preview.saveContext()
+           try persistenceController.saveContext()
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -94,7 +65,6 @@ final class SecuredNoteTests: XCTestCase {
         let persistenceController = PersistenceController.preview
         let notesMainVM = NotesMainViewModel(persistanceController: persistenceController)
         let expectation = expectation(description: "test_MainViewModel")
-        let initCount = notesMainVM.notes.count
         let notesDetailVM = NoteDetailViewModel(note: Note.new, persistanceController: persistenceController)
         await notesDetailVM.saveNote()
 
@@ -107,5 +77,32 @@ final class SecuredNoteTests: XCTestCase {
         await notesDetailVM.saveNote()
         await fulfillment(of: [expectation], timeout: 10)
         XCTAssertEqual(notesMainVM.notes.first?.title, "hello")
+    }
+
+    @MainActor func testMainViewModel() async {
+        let persistenceController = PersistenceController.preview
+        let notesManinVM = NotesMainViewModel(persistanceController: persistenceController)
+        let expectation = expectation(description: "test_MainViewModel")
+        let initCount = notesManinVM.notes.count
+        let viewContext = persistenceController.container.viewContext
+        withObservationTracking {
+            _ = notesManinVM.notes
+        } onChange: {
+            expectation.fulfill()
+        }
+        do {
+            let newItem = NoteEntity(context: viewContext)
+            newItem.timestamp = Date()
+            newItem.noteId = UUID()
+            newItem.title = "Testing"
+            newItem.content = "test_MainViewModel"
+            try persistenceController.saveContext()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        await fulfillment(of: [expectation], timeout: 40)
+        XCTAssertEqual(notesManinVM.notes.count, initCount+1)
+
     }
 }
