@@ -10,7 +10,7 @@ import SwiftUI
 struct BioMetricSecurityUIView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var isActive: Bool = false
-    var viewModel: SecurityViewModel
+    @State var viewModel: SecurityViewModel
     init(viewModel: SecurityViewModel) {
         self.viewModel = viewModel
     }
@@ -37,6 +37,8 @@ struct BioMetricSecurityUIView: View {
                     self.isActive = true
                 }
             }
+        }.alert("Please enable faceId through device settings.", isPresented: $viewModel.isSettingsDisabled) {
+            Button("OK") { }
         }
     }
 }

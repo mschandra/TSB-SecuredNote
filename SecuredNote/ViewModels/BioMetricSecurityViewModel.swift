@@ -10,6 +10,7 @@ import LocalAuthentication
 
 protocol SecurityViewModel {
     var isUnlocked: Bool { get set }
+    var isSettingsDisabled: Bool { get set }
     func unlock()
 }
 @Observable
